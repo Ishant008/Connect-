@@ -35,10 +35,13 @@ io.on("connection", (socket) => {
 });
 
 
-app.use(cors({
-  origin: process.env.FRONTEND_URL, 
-  credentials: true,
-}))
+app.use(
+  cors({
+    origin: "https://connect-app.netlify.app", 
+    credentials: true, 
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  })
+);
 app.use(express.json({ limit: "80mb" })); 
 app.use(express.urlencoded({ limit: "80mb", extended: true })); 
 app.use(cookieParser())
