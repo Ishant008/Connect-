@@ -294,7 +294,12 @@ export const resetPassword = async (req, res) => {
 
 export const logout = async (req,res)=>{
   try{
-   res.cookie("token","",{maxAge:"0"})
+   res.cookie("token", "", {
+      maxAge: 0,
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "None",
+    });
    res.status(200).json({
     error:false,
     message:"User logged out successfully"
